@@ -19,7 +19,6 @@ public class StatusCheckTest {
     public void test(){
         AppHomeScreen appHomeScreen = new AppHomeScreen(testBase.driver);
         appHomeScreen.statusButton.click();
-        //possibly add sleep
         assertTrue(appHomeScreen.statusTitle.isDisplayed());
         try{Thread.sleep(4000);}
         catch (Exception e){System.out.println("Error in sleep");}

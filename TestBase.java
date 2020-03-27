@@ -33,8 +33,10 @@ public class TestBase {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         URL remoteUrl = new URL("http://localhost:4723/wd/hub");
 
-        //Comment just to make a change
-        //Change 2
+        //File Paths for different users
+        String connorFilePath = "C:/Users/chutson/Desktop/MyAcuRite-integration-debug.apk";
+        String ryanFilePath = "C:/Users/ryanj/..PROGRAMS/Java/Primex/AppiumCodeForAndroid/AppiumAutomation/MAR.apk";
+        String macFilePath = "";
         //If running the test locally uncomment the appropriate sections
 
         // ### --Android Local Configuration--
@@ -46,7 +48,7 @@ public class TestBase {
         //Replace these with the correct values for your emulator and app path
         desiredCapabilities.setCapability("platformVersion", "10");
         desiredCapabilities.setCapability("deviceName", "emulator-5554");
-        desiredCapabilities.setCapability("app", "C:/Users/ryanj/..PROGRAMS/Java/Primex/AppiumCodeForAndroid/AppiumAutomation/MAR.apk");
+        desiredCapabilities.setCapability("app", connorFilePath);
         desiredCapabilities.setCapability("avd","Pixel_2_API_29");
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
         // ### --End Android Config--
