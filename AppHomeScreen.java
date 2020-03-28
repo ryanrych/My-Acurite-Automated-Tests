@@ -36,7 +36,7 @@ public class AppHomeScreen extends FieldLookupScreen {
     //add IOS ID
     public MobileElement statusTitle;
 
-    @AndroidFindBy(id ="com.pfoc.myacurite:id/toolbar_action_text")
+    @AndroidFindBy(id ="com.pfoc.myacurite:id/toolbar_action")
     //add IOS ID
     public MobileElement alertsButton;
 

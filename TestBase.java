@@ -48,7 +48,7 @@ public class TestBase {
         //Replace these with the correct values for your emulator and app path
         desiredCapabilities.setCapability("platformVersion", "10");
         desiredCapabilities.setCapability("deviceName", "emulator-5554");
-        desiredCapabilities.setCapability("app", connorFilePath);
+        desiredCapabilities.setCapability("app", ryanFilePath);
         desiredCapabilities.setCapability("avd","Pixel_2_API_29");
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
         // ### --End Android Config--

@@ -2,8 +2,11 @@ import io.appium.java_client.MobileElement;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import screens.*;
 
 import java.net.MalformedURLException;
+
+import static junit.framework.TestCase.assertTrue;
 
 public class CreateAlertRuleTest {
     protected TestBase testBase = new TestBase();
@@ -15,9 +18,40 @@ public class CreateAlertRuleTest {
     }
     @Test
     public void test(){
-
-
-
+        AppHomeScreen appHomeScreen = new AppHomeScreen(testBase.driver);
+        appHomeScreen.menuButton.click();
+        MenuScreen menuScreen = new MenuScreen(testBase.driver);
+        menuScreen.alertsButton.click();
+        AlertsScreen alertsScreen = new AlertsScreen(testBase.driver);
+        NewAlertScreen newAlertScreen = new NewAlertScreen(testBase.driver);
+        alertsScreen.moreOptionsButton.click();
+        alertsScreen.createAlertButton.click();
+        AlertTypeListScreen alertTypeListScreen = new AlertTypeListScreen(testBase.driver);
+        alertTypeListScreen.humidityButton.click();
+        try {
+            newAlertScreen.humidityField.sendKeys("100");
+            newAlertScreen.createButton.click();
+        }catch (Exception e){
+            alertsScreen.moreOptionsButton.click();
+            alertsScreen.createAlertButton.click();
+            alertTypeListScreen.humidityButton.click();
+            newAlertScreen.humidityField.sendKeys("100");
+            newAlertScreen.createButton.click();
+        }
+        appHomeScreen.menuButton.click();
+        try {
+            menuScreen.settingsButton.click();
+        }catch (Exception e){
+            menuScreen.closeDrawerButton.click();
+            appHomeScreen.menuButton.click();
+            menuScreen.alertsButton.click();
+            appHomeScreen.menuButton.click();
+            menuScreen.settingsButton.click();
+        }
+        menuScreen.manageAlertsButton.click();
+        ManageAlertsScreen manageAlertsScreen = new ManageAlertsScreen(testBase.driver);
+        manageAlertsScreen.mostRecentAlert.click();
+        assertTrue(newAlertScreen.humidityField.getText().equals("100"));
     }
 
     @After

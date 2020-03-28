@@ -26,9 +26,11 @@ public class ThemeChangeTest {
         menuScreen.settingsButton.click();
         menuScreen.themeSettingsButton.click();
         ThemeScreen themeScreen = new ThemeScreen(testBase.driver);
-        assertTrue((themeScreen.darkButton.getAttribute("checked").equals("1")||themeScreen.lightButton.getAttribute("checked").equals("0")));
+        assertTrue((themeScreen.darkButton.getAttribute("checked").equals("true")||themeScreen.lightButton.getAttribute("checked").equals("false")));
         themeScreen.lightButton.click();
-        assertTrue((themeScreen.darkButton.getAttribute("checked").equals("0")||themeScreen.lightButton.getAttribute("checked").equals("1")));
+        assertTrue((themeScreen.darkButton.getAttribute("checked").equals("false")||themeScreen.lightButton.getAttribute("checked").equals("true")));
+        themeScreen.darkButton.click();
+        assertTrue((themeScreen.darkButton.getAttribute("checked").equals("true")||themeScreen.lightButton.getAttribute("checked").equals("false")));
     }
 
     @After
