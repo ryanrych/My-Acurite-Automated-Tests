@@ -15,6 +15,18 @@ public class NewAlertScreen extends FieldLookupScreen {
     //add IOS ID
     public MobileElement createButton;
 
+    @AndroidFindBy(id = "com.pfoc.myacurite:id/alert_condition_spinner")
+    //add IOS ID
+    public MobileElement alertConditionSpinner;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.Spinner/android.widget.TextView")
+    //add IOS ID
+    public MobileElement alertConditionSpinnerText;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[2]")
+    //add IOS ID
+    public MobileElement humidityBelowCondition;
+
     public NewAlertScreen(AppiumDriver driver) {
         super(driver);
     }
