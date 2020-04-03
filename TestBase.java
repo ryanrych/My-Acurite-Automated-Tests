@@ -77,46 +77,83 @@ public class TestBase {
         // ### --End AWS Device Farm Config Branch--
     }
 
-        //@Test
-        public void login() {
+    //Same code as the test, used as @Before code for other tests
+    public void login() {
 
-            //Click on the welcome screen first.
-            WelcomeScreen welcomeScreen = new WelcomeScreen(driver);
-            welcomeScreen.loginButton.click();
+        //Click on the welcome screen first.
+        WelcomeScreen welcomeScreen = new WelcomeScreen(driver);
+        welcomeScreen.loginButton.click();
 
-            LoginScreen loginScreen = new LoginScreen(driver);
-            loginScreen.emailField.sendKeys("benbrosius@gmail.com");
-            loginScreen.passwordField.sendKeys("Abcd123");
-            loginScreen.loginButton.click();
-            
-            AppHomeScreen appHomeScreen = new AppHomeScreen(driver);
+        LoginScreen loginScreen = new LoginScreen(driver);
+        loginScreen.emailField.sendKeys("benbrosius@gmail.com");
+        loginScreen.passwordField.sendKeys("Abcd123");
+        loginScreen.loginButton.click();
 
-            int x = 0;
-            int triesToFindElement = 0;
-            boolean foundDashboard = false;
-            while(x < 1){
-                if (driver.findElements(By.id("com.pfoc.myacurite:id/smart_hub_page_content")).size()>0) {
-                    //System.out.println("FOUND");
-                    foundDashboard = true;
-                    x++;
-                }
-                else if (triesToFindElement > 10){
-                    //System.out.println(triesToFindElement);
-                    //System.out.println("FAIL -- Tries tp find element (" + triesToFindElement + ") Passed 10");
-                    x++;
-                }
-                else {
-                    //System.out.println("NOT FOUND!");
-                    triesToFindElement++;
-                }
+        AppHomeScreen appHomeScreen = new AppHomeScreen(driver);
 
+        int x = 0;
+        int triesToFindElement = 0;
+        boolean foundDashboard = false;
+        while(x < 1){
+            if (driver.findElements(By.id("com.pfoc.myacurite:id/smart_hub_page_content")).size()>0) {
+                //System.out.println("FOUND");
+                foundDashboard = true;
+                x++;
+            }
+            else if (triesToFindElement > 10){
+                //System.out.println(triesToFindElement);
+                //System.out.println("FAIL -- Tries tp find element (" + triesToFindElement + ") Passed 10");
+                x++;
+            }
+            else {
+                //System.out.println("NOT FOUND!");
+                triesToFindElement++;
             }
 
-            //assertTrue(foundDashboard); uncomment when testing THIS test
+        }
 
     }
 
-    //@After
+    @Test
+    public void loginTest() {
+
+       //Click on the welcome screen first.
+       WelcomeScreen welcomeScreen = new WelcomeScreen(driver);
+       welcomeScreen.loginButton.click();
+
+       LoginScreen loginScreen = new LoginScreen(driver);
+       loginScreen.emailField.sendKeys("benbrosius@gmail.com");
+       loginScreen.passwordField.sendKeys("Abcd123");
+       loginScreen.loginButton.click();
+
+       AppHomeScreen appHomeScreen = new AppHomeScreen(driver);
+
+       int x = 0;
+       int triesToFindElement = 0;
+       boolean foundDashboard = false;
+       while(x < 1){
+           if (driver.findElements(By.id("com.pfoc.myacurite:id/smart_hub_page_content")).size()>0) {
+               //System.out.println("FOUND");
+               foundDashboard = true;
+               x++;
+           }
+           else if (triesToFindElement > 10){
+               //System.out.println(triesToFindElement);
+               //System.out.println("FAIL -- Tries tp find element (" + triesToFindElement + ") Passed 10");
+               x++;
+           }
+           else {
+               //System.out.println("NOT FOUND!");
+               triesToFindElement++;
+           }
+
+       }
+
+       assertTrue(foundDashboard);
+
+    }
+
+    @After
     public void tearDown() {
         driver.quit();
     }
