@@ -27,6 +27,14 @@ public class NewAlertScreen extends FieldLookupScreen {
     //add IOS ID
     public MobileElement humidityBelowCondition;
 
+    @AndroidFindBy(id = "com.pfoc.myacurite:id/toolbar_action")
+    //add IOS ID
+    public MobileElement deleteAlertButton;
+
+    @AndroidFindBy(id = "android:id/button1")
+    //add IOS ID
+    public MobileElement confirmDeleteButton;
+
     public NewAlertScreen(AppiumDriver driver) {
         super(driver);
     }
