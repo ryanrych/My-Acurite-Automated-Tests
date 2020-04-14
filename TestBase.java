@@ -114,6 +114,56 @@ public class TestBase {
 
     }
 
+    @Before
+    public void setUpTest() throws MalformedURLException {
+
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        URL remoteUrl = new URL("http://localhost:4723/wd/hub");
+
+        //File Paths for different users
+        String connorFilePath = "C:/Users/chutson/Desktop/MyAcuRite-integration-debug.apk";
+        String ryanFilePath = "C:/Users/ryanj/..PROGRAMS/Java/Primex/AppiumCodeForAndroid/AppiumAutomation/MAR.apk";
+        String macFilePath = "";
+        //If running the test locally uncomment the appropriate sections
+
+        // ### --Android Local Configuration--
+        desiredCapabilities.setCapability("platform", "Android");
+        desiredCapabilities.setCapability("platformName", "Android");
+        desiredCapabilities.setCapability("automationName", "UiAutomator2");
+        desiredCapabilities.setCapability("appWaitActivity", ".onboard.OnBoardActivity");
+
+        //Replace these with the correct values for your emulator and app path
+        desiredCapabilities.setCapability("platformVersion", "10");
+        desiredCapabilities.setCapability("deviceName", "emulator-5554");
+        desiredCapabilities.setCapability("app", ryanFilePath);
+        desiredCapabilities.setCapability("avd","Pixel_2_API_29");
+        driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+        // ### --End Android Config--
+
+        // ### --iOS Local Configuration--
+        // ### --End iOS Configuration--
+
+        // ### --AWS Device Farm Configuration--
+
+        // String environment = System.getenv("DEVICEFARM_DEVICE_PLATFORM_NAME");
+        // System.out.println("Environment: " + environment);
+
+        // if( environment != null ) {
+        //     if( environment.equalsIgnoreCase("Android") ) {
+        //         System.out.println("Running Android Tests");
+        //         desiredCapabilities.setCapability("appWaitActivity", ".onboard.OnBoardActivity");
+        //         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+        //     } else if( environment.equalsIgnoreCase("iOS") ) {
+
+        //     } else {
+        //         fail("Unable to detect platform to run on");
+        //     }
+        // } else {
+        //     fail("Unable to read platform name variable");
+        // }
+        // ### --End AWS Device Farm Config Branch--
+    }
+
     @Test
     public void loginTest() {
 
