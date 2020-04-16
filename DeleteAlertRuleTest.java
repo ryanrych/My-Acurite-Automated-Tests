@@ -16,7 +16,8 @@ public class DeleteAlertRuleTest {
     public void setup() throws MalformedURLException, InterruptedException {
         testBase.setUp();
         testBase.login();
-        createAlert.createAlert();
+        createAlert.createLowAlert(testBase);
+        createAlert.createHighAlert(testBase);
     }
     @Test
     public void test(){
@@ -26,21 +27,14 @@ public class DeleteAlertRuleTest {
         ManageAlertsScreen manageAlertsScreen = new ManageAlertsScreen(testBase.driver);
 
         appHomeScreen.menuButton.click();
-        try {
-            menuScreen.settingsButton.click();
-        }catch (Exception e){
-            menuScreen.closeDrawerButton.click();
-            appHomeScreen.menuButton.click();
-            menuScreen.alertsButton.click();
-            appHomeScreen.menuButton.click();
-            menuScreen.settingsButton.click();
-        }
+        menuScreen.settingsButton.click();
         menuScreen.manageAlertsButton.click();
-        MobileElement mostRecent=manageAlertsScreen.mostRecentAlert;
-        mostRecent.click();
+        testBase.driver.getPageSource();
+        String mostRecent=manageAlertsScreen.mostRecentAlert.getAttribute("Text");
+        manageAlertsScreen.mostRecentAlert.click();
         newAlertScreen.deleteAlertButton.click();
         newAlertScreen.confirmDeleteButton.click();
-        assertTrue(manageAlertsScreen.mostRecentAlert!=mostRecent);
+        assertTrue(!manageAlertsScreen.mostRecentAlert.getAttribute("Text").equals(mostRecent));
     }
 
     @After

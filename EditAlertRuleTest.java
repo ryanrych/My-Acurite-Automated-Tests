@@ -16,33 +16,32 @@ public class EditAlertRuleTest {
     public void setup() throws MalformedURLException, InterruptedException {
         testBase.setUp();
         testBase.login();
-        createAlert.createAlert();
+        createAlert.createHighAlert(testBase);
     }
     @Test
     public void test(){
-        AppHomeScreen appHomeScreen = new AppHomeScreen(testBase.driver);
-        MenuScreen menuScreen = new MenuScreen((testBase.driver));
-        NewAlertScreen newAlertScreen = new NewAlertScreen(testBase.driver);
-        ManageAlertsScreen manageAlertsScreen = new ManageAlertsScreen(testBase.driver);
+        System.out.println("NOW!");
 
+        AppHomeScreen appHomeScreen = new AppHomeScreen(testBase.driver);
         appHomeScreen.menuButton.click();
-        try {
-            menuScreen.settingsButton.click();
-        }catch (Exception e){
-            menuScreen.closeDrawerButton.click();
-            appHomeScreen.menuButton.click();
-            menuScreen.alertsButton.click();
-            appHomeScreen.menuButton.click();
-            menuScreen.settingsButton.click();
-        }
+        MenuScreen menuScreen = new MenuScreen(testBase.driver);
+        menuScreen.settingsButton.click();
         menuScreen.manageAlertsButton.click();
+        ManageAlertsScreen manageAlertsScreen = new ManageAlertsScreen(testBase.driver);
+        testBase.driver.getPageSource();
         manageAlertsScreen.mostRecentAlert.click();
+        NewAlertScreen newAlertScreen = new NewAlertScreen(testBase.driver);
+        System.out.println("1");
+        newAlertScreen.humidityField.clear();
+        System.out.println("2");
         newAlertScreen.humidityField.sendKeys("0");
+        System.out.println("3");
+
         newAlertScreen.alertConditionSpinner.click();
         newAlertScreen.humidityBelowCondition.click();
         newAlertScreen.createButton.click();
         manageAlertsScreen.mostRecentAlert.click();
-        assertTrue(newAlertScreen.humidityField.getText().equals("100") && newAlertScreen.alertConditionSpinnerText.getText().equals("Below"));
+        assertTrue(newAlertScreen.humidityField.getText().equals("0") && newAlertScreen.alertConditionSpinnerText.getText().equals("Below"));
     }
 
     @After
